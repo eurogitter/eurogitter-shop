@@ -63,12 +63,9 @@ cd "$APP"
 if [ ! -f .env ]; then
   ADMINPW="$(head -c 48 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | cut -c1-16)"
   echo
-  echo "Ein paar Angaben fuer Rechnung und Impressum (Enter = leer lassen, spaeter in $APP/.env nachtragen):"
-  printf "IBAN fuer die Rechnung: ";            read -r IBAN </dev/tty || IBAN=""
-  printf "BIC: ";                               read -r BIC </dev/tty || BIC=""
-  printf "Name der Bank: ";                     read -r BANK </dev/tty || BANK=""
-  printf "USt-IdNr. (z. B. DE123456789): ";     read -r USTID </dev/tty || USTID=""
-  printf "Telefonnummer fuers Impressum (Enter = keine): "; read -r PHONE </dev/tty || PHONE=""
+  # Bankverbindung und Steuernummer traegt der Betreiber je Rechnung im Admin ein (bewusst leer).
+  IBAN=""; BIC=""; BANK=""; USTID=""
+  PHONE="089 4571 2836"                 # Telefon: erscheint nur im Impressum
   echo
   echo "Passwort des Postfachs $MAILBOX (Namecheap Private Email), damit der Shop echte E-Mails"
   echo "verschicken kann (Bestellbestaetigung, Rechnung, Kontakt). Nur Enter = spaeter in $APP/.env eintragen."
